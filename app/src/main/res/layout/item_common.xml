@@ -4,6 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="detail"
+            type="com.example.jetpackwanandroid.bean.ArticleItemData" />
+
 
     </data>
 
@@ -19,6 +23,8 @@
             android:id="@+id/tv_name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@{detail.author}"
+
             tools:text="张三" />
 
         <TextView
@@ -27,6 +33,7 @@
             android:id="@+id/tv_time"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:text="@{detail.niceDate}"
             tools:text="1小时前" />
 
         <TextView
@@ -35,6 +42,7 @@
             android:id="@+id/tv_desc"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@{detail.title}"
             tools:text="每日一问Android签名机制"
             android:layout_marginTop="10dp" />
 
@@ -45,6 +53,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_desc"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="10dp"
+            android:text="@{detail.superChapterName}"
             tools:text="广场/Tab" />
 
         <ImageView
@@ -52,7 +61,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_desc"
-            android:src="@android:drawable/btn_star_big_on" />
+            android:src="@{detail.collect?@android:drawable/btn_star_big_on:@android:drawable/btn_star_big_off}" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
