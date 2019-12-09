@@ -9,7 +9,7 @@ data class ArticleItemData(
     //只保存需要保存的一些数据
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val cache_id : Long=0,
+    val cache_id : Int=0,
 
     @ColumnInfo(name = "author")
     val author: String,

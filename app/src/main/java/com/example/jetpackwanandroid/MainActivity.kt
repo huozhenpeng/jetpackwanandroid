@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         mViewModel.data.pagedList.observe(this, Observer {
 
             adapter.submitList(it){
-                Log.e("abc","submitList")
+               // Log.e("abc","submitList"+it[0]?.cache_id)
 //                val layoutManager = (mBind.recyclerView.layoutManager as LinearLayoutManager)
 //                val position = layoutManager.findFirstCompletelyVisibleItemPosition()
 //                if (position != RecyclerView.NO_POSITION) {

@@ -1,5 +1,6 @@
 package com.example.jetpackwanandroid.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -25,6 +26,7 @@ class HomeAdapter(
 
         holder.binding.detail=getItem(position)
         holder.binding.viewmodel=viewModel
+        holder.binding.executePendingBindings()
 
     }
 
@@ -42,13 +44,15 @@ class HomeAdapter(
                 newItem: ArticleItemData
             ): Boolean {
 
-                return oldItem.id==newItem.id
+                //Log.e("abc","oldItem.id==newItem.id------>"+(oldItem.id==newItem.id))
+                return oldItem.cache_id==newItem.cache_id
             }
 
             override fun areItemsTheSame(
                 oldItem: ArticleItemData,
                 newItem: ArticleItemData
             ): Boolean {
+                //Log.e("abc","oldItem==newItem------>"+(oldItem==newItem))
                 return oldItem==newItem
             }
 

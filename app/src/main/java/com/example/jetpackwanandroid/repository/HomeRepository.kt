@@ -38,7 +38,7 @@ class HomeRepository(
             .setPageSize(15)              // 分页加载的数量
             .setInitialLoadSizeHint(30)   // 初次加载的数量
             .setPrefetchDistance(10)      // 预取数据的距离
-            .setEnablePlaceholders(false) // 是否启用占位符
+            .setEnablePlaceholders(true) // 是否启用占位符
             .build()
 
         val livePagedList=LivePagedListBuilder(dao.getAll(),config).setBoundaryCallback(boundaryCallback).build()
@@ -64,7 +64,7 @@ class HomeRepository(
     /**
      * 更新收藏状态
      */
-    fun updateData(id: Int) {
+    fun updateData(id: Long) {
         GlobalScope.launch {
             var articleItemData: ArticleItemData=dao.getSingle(id)
             articleItemData.collect=!articleItemData.collect

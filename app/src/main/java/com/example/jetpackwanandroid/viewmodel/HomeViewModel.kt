@@ -18,7 +18,7 @@ class HomeViewModel(
 {
     val data=homeRepository.requestData(10)
 
-    public fun click(id:Int)
+    public fun click(id:Long)
     {
         Log.e("abc","click")
         homeRepository.updateData(id)

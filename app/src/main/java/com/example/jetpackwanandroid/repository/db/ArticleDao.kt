@@ -17,8 +17,8 @@ interface ArticleDao {
     @Update
     fun update(articleItemData: ArticleItemData)
 
-    @Query("SELECT * FROM HOME_ARTICLE_CACHE WHERE article_id=:id")
-    fun getSingle(id:Int):ArticleItemData
+    @Query("SELECT * FROM HOME_ARTICLE_CACHE WHERE id=:id")
+    fun getSingle(id:Long):ArticleItemData
 
 
 }

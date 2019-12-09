@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_desc"
-            android:onClick="@{() -> viewmodel.click(detail.id)}"
+            android:onClick="@{() -> viewmodel.click(detail.cache_id)}"
             android:src="@{detail.collect?@android:drawable/btn_star_big_on:@android:drawable/btn_star_big_off}" />
 
 
