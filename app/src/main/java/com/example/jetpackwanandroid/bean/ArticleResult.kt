@@ -8,7 +8,7 @@ data class ArticleResult(
 
 data class Data(
     val curPage: Int,
-    val articleItemData: List<ArticleItemData>,
+    val datas: List<ArticleItemData>,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,

@@ -25,7 +25,7 @@ class HomeRepository(
         )
 
         val livePagedList= dao.getAll().toLiveData(
-            pageSize=pageSize,
+            pageSize=10,
             boundaryCallback = boundaryCallback
         )
 
@@ -40,7 +40,7 @@ class HomeRepository(
     {
         result.let {
             db.runInTransaction{
-                dao.insert(result.data.articleItemData)
+                dao.insert(result.data.datas)
             }
         }
     }

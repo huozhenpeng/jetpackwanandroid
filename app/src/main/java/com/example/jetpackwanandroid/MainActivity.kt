@@ -2,6 +2,7 @@ package com.example.jetpackwanandroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         mViewModel.data.pagedList.observe(this, Observer {
 
             adapter.submitList(it){
+                Log.e("abc","submitList")
 //                val layoutManager = (mBind.recyclerView.layoutManager as LinearLayoutManager)
 //                val position = layoutManager.findFirstCompletelyVisibleItemPosition()
 //                if (position != RecyclerView.NO_POSITION) {
