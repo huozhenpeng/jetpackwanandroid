@@ -1,10 +1,7 @@
 package com.example.jetpackwanandroid.repository.db
 
 import androidx.paging.DataSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.jetpackwanandroid.bean.ArticleItemData
 
 @Dao
@@ -15,6 +12,13 @@ interface ArticleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(data:List<ArticleItemData>)
+
+
+    @Update
+    fun update(articleItemData: ArticleItemData)
+
+    @Query("SELECT * FROM HOME_ARTICLE_CACHE WHERE article_id=:id")
+    fun getSingle(id:Int):ArticleItemData
 
 
 }

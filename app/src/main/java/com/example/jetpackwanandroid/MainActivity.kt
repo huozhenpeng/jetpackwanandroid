@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         mBind=DataBindingUtil.setContentView(this,R.layout.activity_main)
         mBind.lifecycleOwner=this
 
-        val adapter=HomeAdapter()
+        val adapter=HomeAdapter(mViewModel)
         mBind.recyclerView.adapter=adapter
 
         mViewModel.data.pagedList.observe(this, Observer {

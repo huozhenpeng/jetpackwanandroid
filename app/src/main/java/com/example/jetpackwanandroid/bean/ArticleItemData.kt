@@ -18,7 +18,7 @@ data class ArticleItemData(
     val chapterName: String,
 
     @ColumnInfo(name = "collect")
-    val collect: Boolean,
+    var collect: Boolean,
 
     @ColumnInfo(name = "article_id")
     val id: Int,

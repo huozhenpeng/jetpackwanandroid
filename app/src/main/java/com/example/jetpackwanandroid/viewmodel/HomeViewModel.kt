@@ -1,6 +1,8 @@
 package com.example.jetpackwanandroid.viewmodel
 
 import android.app.Application
+import android.util.Log
+import android.view.View
 import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
@@ -16,4 +18,9 @@ class HomeViewModel(
 {
     val data=homeRepository.requestData(10)
 
+    public fun click(id:Int)
+    {
+        Log.e("abc","click")
+        homeRepository.updateData(id)
+    }
 }

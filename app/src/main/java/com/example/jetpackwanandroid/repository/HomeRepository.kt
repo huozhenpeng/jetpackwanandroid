@@ -9,6 +9,8 @@ import androidx.paging.toLiveData
 import com.example.jetpackwanandroid.bean.ArticleItemData
 import com.example.jetpackwanandroid.bean.ArticleResult
 import com.example.jetpackwanandroid.repository.db.AppDataBase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class HomeRepository(
     private val application: Application
@@ -47,13 +49,26 @@ class HomeRepository(
 
     }
 
-
+    /**
+     * 从服务器获取到数据之后插入数据库
+     */
     private fun insertResultIntoDb(result:ArticleResult)
     {
         result.let {
             db.runInTransaction{
                 dao.insert(result.data.datas)
             }
+        }
+    }
+
+    /**
+     * 更新收藏状态
+     */
+    fun updateData(id: Int) {
+        GlobalScope.launch {
+            var articleItemData: ArticleItemData=dao.getSingle(id)
+            articleItemData.collect=!articleItemData.collect
+            dao.update(articleItemData)
         }
     }
 }

@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jetpackwanandroid.R
 import com.example.jetpackwanandroid.bean.ArticleItemData
 import com.example.jetpackwanandroid.databinding.ItemCommonBinding
+import com.example.jetpackwanandroid.viewmodel.HomeViewModel
 
-class HomeAdapter: PagedListAdapter<ArticleItemData, HomeAdapter.HomeViewHolder>(DIFF_CALLBACK) {
+class HomeAdapter(
+    private val viewModel: HomeViewModel
+): PagedListAdapter<ArticleItemData, HomeAdapter.HomeViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder(
@@ -21,6 +24,7 @@ class HomeAdapter: PagedListAdapter<ArticleItemData, HomeAdapter.HomeViewHolder>
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
 
         holder.binding.detail=getItem(position)
+        holder.binding.viewmodel=viewModel
 
     }
 
