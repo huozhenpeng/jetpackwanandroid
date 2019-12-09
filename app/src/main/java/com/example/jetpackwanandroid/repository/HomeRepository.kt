@@ -39,7 +39,7 @@ class HomeRepository(
             .setEnablePlaceholders(false) // 是否启用占位符
             .build()
 
-        val livePagedList=LivePagedListBuilder(dao.getAll(),config).build()
+        val livePagedList=LivePagedListBuilder(dao.getAll(),config).setBoundaryCallback(boundaryCallback).build()
 
         return Listing(
             pagedList = livePagedList

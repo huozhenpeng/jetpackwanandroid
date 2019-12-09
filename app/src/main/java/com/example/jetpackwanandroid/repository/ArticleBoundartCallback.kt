@@ -18,29 +18,17 @@ class ArticleBoundartCallback(
 
     private val helper = PagingRequestHelper(Executors.newSingleThreadExecutor())
     override fun onItemAtEndLoaded(itemAtEnd: ArticleItemData) {
+        //Demo中之所以敢用helper进行判断是因为在拿到数据的回调中，对里面的running进行了置空处理
         Log.e("abc","onItemAtEndLoaded:")
-        helper.runIfNotRunning(PagingRequestHelper.RequestType.AFTER)
-        {
-            Log.e("abc","onItemAtEndLoaded:"+Thread.currentThread())
-            HttpManager.getInstance().wanApi.getArticles(
-                pageNo = 1
-            ).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(
+        HttpManager.getInstance().wanApi.getArticles(
+            pageNo = 1
+        ).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread()).subscribe(
                 Consumer {
                     insertItemsIntoDb(it)
-            }, Consumer {
+                }, Consumer {
 
-            })
-        }
-//        HttpManager.getInstance().wanApi.getArticles(
-//            pageNo = 1
-//        ).subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread()).subscribe(
-//                Consumer {
-//                    insertItemsIntoDb(it)
-//                }, Consumer {
-//
-//                })
+                })
     }
 
     private fun insertItemsIntoDb(article:ArticleResult) {
@@ -55,19 +43,15 @@ class ArticleBoundartCallback(
     }
 
     override fun onZeroItemsLoaded() {
-        Log.e("abc","onZeroItemsLoaded:")
-        helper.runIfNotRunning(PagingRequestHelper.RequestType.INITIAL)
-        {
-            Log.e("abc","onZeroItemsLoaded:"+Thread.currentThread())
-            HttpManager.getInstance().wanApi.getArticles(
-                pageNo = 1
-            ).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(
+        Log.e("abc","onZeroItemsLoaded:"+Thread.currentThread())
+        HttpManager.getInstance().wanApi.getArticles(
+            pageNo = 1
+        ).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread()).subscribe(
                 Consumer {
                     insertItemsIntoDb(it)
                 }, Consumer {
-                        Log.e("abc","失败:"+it.toString())
+                    Log.e("abc","失败:"+it.toString())
                 })
-        }
     }
 }
